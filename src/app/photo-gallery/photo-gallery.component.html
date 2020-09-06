@@ -1,0 +1,39 @@
+<p>photo-gallery works!</p>
+
+  <div class="container">
+    <div class="title"
+    *ngFor="let photo of photos | paginate : {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: count
+    }; let i = index"
+    [class.active]="i == currentIndex"
+    (click)="setActivePhoto(photo, i)"
+    >
+    <div class="col-md-3">
+      <div class="col-md-4" data-toggle="modal">
+        <a href="https://placeholder.com">
+          <img src="https://via.placeholder.com/800x600.png?text=sample+image">
+        </a>
+        <div class="desc">{{ photo. title }}</div>     
+      </div>
+
+    </div>
+    </div>
+
+    <div class="col-md-12">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        responsive="true"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+    </div>
+
+    <!-- <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select> -->
+  </div>
+
